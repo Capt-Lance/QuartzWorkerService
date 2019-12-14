@@ -63,6 +63,7 @@ namespace QuartzWorkerService
             }
             catch(TaskCanceledException ex)
             {
+                Console.WriteLine("Task Cancelled");
                 // Start shutdown process
             }
             

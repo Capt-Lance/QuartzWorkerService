@@ -49,8 +49,10 @@ namespace QuartzWorkerService
 
         }
 
+        // What is a better way to implement this?
         private async Task WaitForCancelAsync(CancellationToken stoppingToken)
         {
+            
             //while (!stoppingToken.IsCancellationRequested)
             //{
             //    await Task.Delay(1000, stoppingToken);

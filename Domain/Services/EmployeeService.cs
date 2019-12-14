@@ -20,7 +20,7 @@ namespace Domain.Services
         {
             try
             {
-                IEnumerable<Employee> fetchedEmployees = await _employeeFetchRepo.GetAllAsync();
+                IEnumerable<Employee> fetchedEmployees = await _employeeFetchRepo.GetAllAsync().ConfigureAwait(false);
                 foreach (Employee fetchedEmployee in fetchedEmployees)
                 {
                     Console.WriteLine(fetchedEmployee.ToString());

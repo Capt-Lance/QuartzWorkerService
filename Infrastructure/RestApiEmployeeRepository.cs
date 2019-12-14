@@ -39,8 +39,8 @@ namespace Infrastructure
             try
             {
                     string url = "http://dummy.restapiexample.com/api/v1/employees";
-                    var result = await _httpClient.GetAsync(url);
-                    string resultString = await result.Content.ReadAsStringAsync();
+                    var result = await _httpClient.GetAsync(url).ConfigureAwait(false);
+                    string resultString = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
                     JArray resultJson = JArray.Parse(resultString);
                     return ToEmployees(resultJson);
             }

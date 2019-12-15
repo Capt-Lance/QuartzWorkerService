@@ -45,29 +45,16 @@ namespace QuartzWorkerService
             await scheduler.Start();
 
             await ConfigureJobs();
-            await WaitForCancelAsync(stoppingToken);
-
         }
 
-        // What is a better way to implement this?
-        private async Task WaitForCancelAsync(CancellationToken stoppingToken)
+        public override async Task StopAsync(CancellationToken cancellationToken)
         {
-            
-            //while (!stoppingToken.IsCancellationRequested)
-            //{
-            //    await Task.Delay(1000, stoppingToken);
-            //}
-            try 
-            {
-                await Task.Delay(-1, stoppingToken);
-            }
-            catch(TaskCanceledException ex)
-            {
-                Console.WriteLine("Task Cancelled");
-                // Start shutdown process
-            }
-            
+            Console.WriteLine("Stopping");
+            await scheduler.Shutdown();
+            Console.WriteLine("Stopped");
+            await base.StopAsync(cancellationToken);
         }
+        
 
         private async Task ConfigureJobs()
         {
